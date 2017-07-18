@@ -26,9 +26,9 @@ opts = statset('Display','final');
 %las distancias, ya que en muchos casos se encuentra mínimos
 %locales y no un mínimo global.
 figure;
-plot(X(idx==1,1),X(idx==1,2),'r.','MarkerSize',12)
+plot(X(idx==1,1),X(idx==1,5),'r.','MarkerSize',12)
 hold on
-plot(X(idx==2,1),X(idx==2,2),'b.','MarkerSize',12)
+plot(X(idx==2,1),X(idx==2,5),'b.','MarkerSize',12)
 % cuando son tres clusters
 % hold on
 % plot((X(idx==3,1)), X(idx==3,2) ,'g.','MarkerSize',12)
