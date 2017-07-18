@@ -18,6 +18,8 @@ require(xts)
 
 dat <- xts(dat$open_valor, order.by=as.Date(dat$Date))
 dat<-scale(dat)+1.13
+#dat<-scale(dat)
+#dat<-dat+min(dat)
 
 
 ##Inicio algoritmo
