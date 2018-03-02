@@ -1,9 +1,9 @@
 #!/bin/sh
 
-sudo $SPARK_HOME/bin/spark-shell -i /home/edgar/Escritorio/DataIPS/Vicepr/percentil.java 
-sudo $SPARK_HOME/bin/spark-shell -i /home/edgar/Escritorio/DataIPS/Jefes/percentil.java 
-sudo $SPARK_HOME/bin/spark-shell -i /home/edgar/Escritorio/DataIPS/Nacionales/percentil.java 
-sudo $SPARK_HOME/bin/spark-shell -i /home/edgar/Escritorio/DataIPS/Internacionales/percentil.java 
+sudo $SPARK_HOME/bin/spark-shell -i /home/centos/Vicepr/percentil.java 
+sudo $SPARK_HOME/bin/spark-shell -i /home/centos/Jefes/percentil.java 
+sudo $SPARK_HOME/bin/spark-shell -i /home/centos/Nacionales/percentil.java 
+sudo $SPARK_HOME/bin/spark-shell -i /home/centos/Internacionales/percentil.java 
 
 ##Donuts
 sudo sed -i -e 's/^/[/' /var/www/html/DashboardProc/web/Vicepr/donut/donut.json
