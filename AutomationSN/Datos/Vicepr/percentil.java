@@ -61,10 +61,10 @@ def parseRDD4(rdd: RDD[String]): RDD[Array[Int]] = {
 	
  
  
-val rdd1 = sc.textFile("/home/edgar/Escritorio/DataIPS/Vicepr/seccion1.txt")
-val rdd2 = sc.textFile("/home/edgar/Escritorio/DataIPS/Vicepr/seccion2.txt")
-val rdd3 = sc.textFile("/home/edgar/Escritorio/DataIPS/Vicepr/seccion3.txt")
-val rdd4 = sc.textFile("/home/edgar/Escritorio/DataIPS/Vicepr/seccion4.txt")
+val rdd1 = sc.textFile("/home/centos/Datos/Vicepr/seccion1.txt")
+val rdd2 = sc.textFile("/home/centos/Datos/Vicepr/seccion2.txt")
+val rdd3 = sc.textFile("/home/centos/Datos/Vicepr/seccion3.txt")
+val rdd4 = sc.textFile("/home/centos/Datos/Vicepr/seccion4.txt")
 
 
 
@@ -121,26 +121,26 @@ val per213 = df2.stat.approxQuantile("q13",Array(0.75),0)
 val per214 = df2.stat.approxQuantile("q14",Array(0.75),0)
 
 //Calcular el percentil de la seccion3 por cada una de de las preguntas
-val per31  = df2.stat.approxQuantile("q1",Array(0.75),0)
-val per32  = df2.stat.approxQuantile("q2",Array(0.75),0)
-val per33  = df2.stat.approxQuantile("q3",Array(0.75),0)
-val per34  = df2.stat.approxQuantile("q4",Array(0.75),0)
-val per35  = df2.stat.approxQuantile("q5",Array(0.75),0)
-val per36  = df2.stat.approxQuantile("q6",Array(0.75),0)
+val per31  = df3.stat.approxQuantile("q1",Array(0.75),0)
+val per32  = df3.stat.approxQuantile("q2",Array(0.75),0)
+val per33  = df3.stat.approxQuantile("q3",Array(0.75),0)
+val per34  = df3.stat.approxQuantile("q4",Array(0.75),0)
+val per35  = df3.stat.approxQuantile("q5",Array(0.75),0)
+val per36  = df3.stat.approxQuantile("q6",Array(0.75),0)
 
 //Calcular el percentil de la seccion4 por cada una de de las preguntas
-val per41  = df2.stat.approxQuantile("q1",Array(0.75),0)
-val per42  = df2.stat.approxQuantile("q2",Array(0.75),0)
-val per43  = df2.stat.approxQuantile("q3",Array(0.75),0)
-val per44  = df2.stat.approxQuantile("q4",Array(0.75),0)
-val per45  = df2.stat.approxQuantile("q5",Array(0.75),0)
-val per46  = df2.stat.approxQuantile("q6",Array(0.75),0)
-val per47  = df2.stat.approxQuantile("q7",Array(0.75),0)
-val per48  = df2.stat.approxQuantile("q8",Array(0.75),0)
-val per49  = df2.stat.approxQuantile("q9",Array(0.75),0)
-val per410 = df2.stat.approxQuantile("q10",Array(0.75),0)
-val per411 = df2.stat.approxQuantile("q11",Array(0.75),0)
-val per412 = df2.stat.approxQuantile("q12",Array(0.75),0)
+val per41  = df4.stat.approxQuantile("q1",Array(0.75),0)
+val per42  = df4.stat.approxQuantile("q2",Array(0.75),0)
+val per43  = df4.stat.approxQuantile("q3",Array(0.75),0)
+val per44  = df4.stat.approxQuantile("q4",Array(0.75),0)
+val per45  = df4.stat.approxQuantile("q5",Array(0.75),0)
+val per46  = df4.stat.approxQuantile("q6",Array(0.75),0)
+val per47  = df4.stat.approxQuantile("q7",Array(0.75),0)
+val per48  = df4.stat.approxQuantile("q8",Array(0.75),0)
+val per49  = df4.stat.approxQuantile("q9",Array(0.75),0)
+val per410 = df4.stat.approxQuantile("q10",Array(0.75),0)
+val per411 = df4.stat.approxQuantile("q11",Array(0.75),0)
+val per412 = df4.stat.approxQuantile("q12",Array(0.75),0)
 
 
 
@@ -266,6 +266,6 @@ val file = fs.globStatus(new Path("/var/www/html/DashboardProc/web/Vicepr/donut/
 fs.rename(new Path("/var/www/html/DashboardProc/web/Vicepr/donut/"+file), new Path("/var/www/html/DashboardProc/web/Vicepr/donut/donut.json"));
 
 
-//System.exit(0) 
+System.exit(0) 
 
 
