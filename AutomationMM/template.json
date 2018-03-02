@@ -1,0 +1,391 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Ec2 block device mapping",
+    "Resources": {
+        "DataNode1": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "DataNode1"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "128"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdl",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "200"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdd",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "500"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6369f5c0-f846-435a-92d4-62d02338cb38"
+                }
+            },
+            "DependsOn": [
+                "Server"
+            ]
+        },
+        "DataNode2": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				 "Tags" : [
+            {"Key" : "Name", "Value" : "DataNode2"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "128"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdl",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "200"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdd",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "500"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "170a5032-5893-49e1-9c39-4ae27c2f3236"
+                }
+            },
+            "DependsOn": [
+                "Server"
+            ]
+        },
+        "Datanode3": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "DataNode3"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "128"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdl",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "200"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdd",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "500"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b3c19fbc-f09c-430f-b69c-51ab73608451"
+                }
+            },
+            "DependsOn": [
+                "Server"
+            ]
+        },
+        "Server": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "Server"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "128"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdl",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "200"
+                        }
+                    },
+                    {
+                        "DeviceName": "/dev/sdd",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "500"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "66459de0-c072-455a-9a43-c48cb859e30c"
+                }
+            }
+        },
+        "CM": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "CM"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "250"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a3b67890-9100-413a-b175-658789970a73"
+                }
+            }
+        },
+        "Edge": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "Edge"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "200",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "250"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "7407d1c7-4066-4f96-a110-78e082001c85"
+                }
+            }
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "6369f5c0-f846-435a-92d4-62d02338cb38": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 220,
+                    "y": 20
+                },
+                "z": 1,
+                "embeds": [],
+                "dependson": [
+                    "66459de0-c072-455a-9a43-c48cb859e30c"
+                ]
+            },
+            "170a5032-5893-49e1-9c39-4ae27c2f3236": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 220,
+                    "y": 90
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "66459de0-c072-455a-9a43-c48cb859e30c"
+                ]
+            },
+            "b3c19fbc-f09c-430f-b69c-51ab73608451": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 220,
+                    "y": 160
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "66459de0-c072-455a-9a43-c48cb859e30c"
+                ]
+            },
+            "66459de0-c072-455a-9a43-c48cb859e30c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 370,
+                    "y": 90
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "a3b67890-9100-413a-b175-658789970a73": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 520,
+                    "y": 90
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "7407d1c7-4066-4f96-a110-78e082001c85": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 90
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "d896cafc-3e4f-420f-af3a-395c8288e010": {
+                "source": {
+                    "id": "6369f5c0-f846-435a-92d4-62d02338cb38"
+                },
+                "target": {
+                    "id": "66459de0-c072-455a-9a43-c48cb859e30c"
+                },
+                "z": 2
+            },
+            "f9c92902-b2d5-4980-b72d-13efbbc95d48": {
+                "source": {
+                    "id": "170a5032-5893-49e1-9c39-4ae27c2f3236"
+                },
+                "target": {
+                    "id": "66459de0-c072-455a-9a43-c48cb859e30c"
+                },
+                "z": 3
+            },
+            "4d75efc0-a229-4dd9-86a7-f5837fad25f6": {
+                "source": {
+                    "id": "b3c19fbc-f09c-430f-b69c-51ab73608451"
+                },
+                "target": {
+                    "id": "66459de0-c072-455a-9a43-c48cb859e30c"
+                },
+                "z": 4
+            }
+        }
+    }
+}
