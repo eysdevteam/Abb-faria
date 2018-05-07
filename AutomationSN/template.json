@@ -1,0 +1,38 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Ec2 block device mapping",
+    "Resources": {
+        "PokeTwitter": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "AvailabilityZone": "us-east-1e",
+                "ImageId": "ami-02e98f78",
+                "KeyName": "cluster_test_biba",
+                "InstanceType": "t2.xlarge",
+                "SecurityGroupIds": [
+                    "sg-3930f346"
+                ],
+                "SubnetId": "subnet-b54fbd89",
+				"Tags" : [
+            {"Key" : "Name", "Value" : "PokeTwitter"}
+						  ],
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeType": "io1",
+                            "Iops": "100",
+                            "DeleteOnTermination": "false",
+                            "VolumeSize": "16"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6369f5c0-f846-435a-92d4-62d02338cb38"
+                }
+            }
+        }
+    }
+}
