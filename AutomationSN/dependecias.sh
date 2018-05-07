@@ -1,7 +1,7 @@
 #!/bin/sh
 #exec &> dependencias.log
 
-echo "Ingrese la dirección IP de la instancia"
+echo "Enter the IP address of the instance"
 read IP
 
 if 
