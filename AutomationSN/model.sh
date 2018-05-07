@@ -1,5 +1,4 @@
-#!/bin/sh
-exec &> model.log
+#!/bin/bash
 timedatectl set-timezone America/Bogota
 
 DIA=$(date +%d-%m-%Y-%H:%M)

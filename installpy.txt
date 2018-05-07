@@ -1,0 +1,17 @@
+sudo yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+
+sudo yum install -y python36u python36u-libs python36u-devel python36u-pip python36u-tkinter.x86_64
+
+	 sudo pip3.6 install --upgrade pip
+
+ sudo pip3.6 install optimuspyspark
+ sudo pip3.6 install ipython
+ 
+ 
+ export PYSPARK_PYTHON=python3.6
+ export PYSPARK_DRIVER_PYTHON=python3.6
+
+ sudo cp $SPARK_HOME/conf/spark-env.sh.template spark-env.sh
+ export PYSPARK_PYTHON=python3.6
+ export PYSPARK_DRIVER_PYTHON=python3.6
+

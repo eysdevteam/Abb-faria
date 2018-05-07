@@ -188,26 +188,30 @@
        sudo alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist
        echo "Sqoop2 installed, configured and started"
 
-     #Installing Spark Packages
-       echo "Installing Spark Packages"
-       sudo yum -y install spark-core spark-history-server spark-python
-       echo "Starting Spark Packages"
-       sudo systemctl start spark-history-server 
-       
-       > /home/centos/spark-history-server.txt
-       sudo service spark-history-server status >> spark-history-server.txt
-       COUNT_S1=`sudo grep  -o 'OK' spark-history-server.txt`
-       if test ${#COUNT_S1} -gt 0
-       then
-                echo "Spark-history-server installed  and started" >> log.txt
-                echo -ne '######       (42.8%)\r' >> log.txt
-                sudo rm -r /home/centos/spark-history-server.txt
-       else
-                echo "Failed Spark history server" >> log.txt
-                sleep 2
-                exit
-        fi
-  
+#     #Installing Spark Packages
+       sudo wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.6.tgz
+       tar zxvf spark-2.2.0-bin-hadoop2.6.tgz
+       sudo echo 'export SPARK_HOME=/home/centos/spark-2.2.0-bin-hadoop2.6/' >> .bashrc
+       sudo chmod -R 777 /tmp/hive/
+#       echo "Installing Spark Packages"
+#       sudo yum -y install spark-core spark-history-server spark-python
+#       echo "Starting Spark Packages"
+#       sudo systemctl start spark-history-server 
+#       
+#       > /home/centos/spark-history-server.txt
+#       sudo service spark-history-server status >> spark-history-server.txt
+#       COUNT_S1=`sudo grep  -o 'OK' spark-history-server.txt`
+#       if test ${#COUNT_S1} -gt 0
+#       then
+#                echo "Spark-history-server installed  and started" >> log.txt
+#                echo -ne '######       (42.8%)\r' >> log.txt
+#                sudo rm -r /home/centos/spark-history-server.txt
+#       else
+#                echo "Failed Spark history server" >> log.txt
+#                sleep 2
+#                exit
+#        fi
+##  
      #Installing Kudu Packages
        echo "Installing Kudu Packages"
        sudo yum -y install kudu kudu-master kudu-tserver
@@ -375,6 +379,12 @@
 	sudo unzip /home/centos/ext-2.2.zip
 	echo "Moving  web files needed for Oozie to /var/lib/oozie/"
 	sudo mv ext-2.2 /var/lib/oozie
+  ##Download configuration file 
+  sudo wget https://raw.githubusercontent.com/eysdevteam/Abbefaria/master/AutomationSN/oozie-site.xml
+  sudo mv oozie-site.xml /etc/oozie/conf/oozie-site.xml
+  sudo chmod +x /etc/oozie/conf/oozie-site.xml
+  #echo "anadir"
+  sudo oozie-setup sharelib create -fs hdfs://localhost:8020 -locallib /usr/lib/oozie/oozie-sharelib-yarn
 	echo "Enabling Oozie service"
 	sudo systemctl enable oozie
 	echo "Starting Oozie service"
@@ -484,23 +494,28 @@
 		sudo yum install -y openssl-devel
 		echo "Creating Hue user"
 		sudo useradd hue
-#		echo "Accessing to Hue folder"
-#		cd hue-4.1.0
-#		echo "Installing Hue"
-#		sudo PREFIX=/home/hue/usr/share make install
-#		echo "Changing owner for Hue directory"
-#		sudo chown hue:hue -R /home/hue/usr/
-#		echo "Configuring properties for Hue service"
-#		sudo sed -e '68i\\n<property>\n\t<name>dfs.webhdfs.enabled</name>\n\t<value>true</value>\n</property>\n' -i /etc/hadoop/conf/hdfs-site.xml
+  	echo "Accessing to Hue folder"
+		cd hue-4.1.0
+		echo "Installing Hue"
+    sudo PREFIX=/home/hue/usr/share make install
+		echo "Changing owner for Hue directory"
+		sudo chown hue:hue -R /home/hue/usr/
+		echo "Configuring properties for Hue service"
+    sudo sed -e '68i\\n<property>\n\t<name>dfs.webhdfs.enabled</name>\n\t<value>true</value>\n</property>\n' -i /etc/hadoop/conf/hdfs-site.xml
 		echo "Starting Hue service"
-    cd /home/centos/
-    sudo nohup ./supervisor.sh &
-		
-		cd /home/centos/
+   
+   
+   IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+   
+   sudo nohup bash /home/centos/supervisor.sh &
+   #sudo ssh -oStrictHostKeyChecking=no -i /home/centos/cluster_test_biba.pem centos@$IP "sudo nohup bash /home/centos/supervisor.sh &"  
 
-		> /home/centos/hue.txt
-		sudo ps -aux | grep supervisor > hue.txt
-		COUNT_S1=`sudo grep  -o 'hue' hue.txt`
+   sleep 60		
+	 cd /home/centos/
+
+	 > /home/centos/hue.txt
+	 sudo ps -aux | grep supervisor > hue.txt
+	 COUNT_S1=`sudo grep  -o 'hue' hue.txt`
        		if test ${#COUNT_S1} -gt 0
        		then
                	      echo "hue is working" >> log.txt
@@ -515,22 +530,21 @@
 		sudo rm -r /home/centos/hue-4.1.0.tgz	
 		
   		 #salir shell
-		echo "////////////////////////////////////////////"  >> log.txt
-		echo "Process succesfully completed (100%)\r" >> log.txt
-		echo "Join in to:" >> log.txt
-		IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+    echo "////////////////////////////////////////////////////"  >> log.txt
+    echo "Process succesfully completed (100%)\r" >> log.txt
+    echo "Join in to:" >> log.txt		
     echo $IP
-		echo "// $IP:50070 -> Hadoop                    //" >> log.txt
-		echo "// $IP:8088 -> Haddop                     //" >> log.txt
-		echo "// $IP:11000 -> Oozie                     //" >> log.txt
-    echo "// $IP:8983 -> Solr                       //" >> log.txt
+    echo "// $IP:50070 -> Hadoop                        //" >> log.txt
+    echo "// $IP:8088 -> Haddop                        //" >> log.txt
+    echo "// $IP:11000 -> Oozie                       //" >> log.txt
+    echo "// $IP:8983 -> Solr                        //" >> log.txt
     echo "// $IP:8888 -> Hue                        //" >> log.txt
-    echo "// $IP:10002 -> Hive server2              //" >> log.txt
-    echo "// $IP:10002 -> Spark  master             //" >> log.txt
-    echo "// $IP:12000 -> Sqoop2		          			//" >> log.txt
-    echo "////////////////////////////////////////////"  >> log.txt
+    echo "// $IP:10002 -> Hive server2             //" >> log.txt
+    echo "// $IP:10002 -> Spark  master           //" >> log.txt
+    echo "// $IP:12000 -> Sqoop2		 //" >> log.txt
+    echo "////////////////////////////////////////"  >> log.txt
 
 		echo "Ok"
-
+exit
 exit
   
